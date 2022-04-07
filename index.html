@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="tpl_style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.getJSON('cartoons.json').then(images => {
+                console.log(images)
+                images.forEach(item => {
+                    //$(`<img width="194px" height="252px" src="https://kimcartoon.li${item.image}">`).appendTo('body');
+                    $(`
+                        <a href="#!" title="${item.title}">
+                            <img width="194px" height="252px" src="images/${item.image.split('/')[4] }">
+                            <div class="item-status">Status
+                            </div>
+                            <div class="item-title">${item.title}
+                                <br>
+                                <span class="textWhite">${item.episode}</span>
+                            </div>
+                        </a>                    
+                    `).appendTo('.items');
+                });
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="scrollable">
+        <div class="items">
+        </div>
+    </div>
+
+</body>
+
+</html>
